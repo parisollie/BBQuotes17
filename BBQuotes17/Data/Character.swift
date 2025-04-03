@@ -31,7 +31,7 @@ struct Character : Decodable {
         case status
         case portrayedBy
     }
-    //Vid 54,Paso 26
+    //V-54,Paso 26
     init(from decoder: any Decoder) throws {
         //Este codigo se hace automaticamente
         let container = try decoder.container(keyedBy: CodingKeys.self)

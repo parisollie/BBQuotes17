@@ -22,13 +22,13 @@ struct FetchService {
     //Paso 12, le ponemos el async y con throws , podemos tener error y Quote es lo que queremos.
     func fetchQuote(from show: String) async throws -> Quote {
         
-        //Paso 13, Build fetch url, el appending le pone el (/)po nosotros
-        
+        //Paso 13, Build fetch url, el appending le pone el (/)por nosotros
+        //no hay paso 14
         let quoteURL = baseURL.appending(path: "quotes/random")
         //Paso 15,No nos preocumos por el (+) porque la funcion de queryitems lo hace por nosotros
         let fetchURL = quoteURL.appending(queryItems: [URLQueryItem(name: "production", value: show)])
         
-        //Vid 51,paso 16- Fetch data
+        //Vid 51,paso 16 - Fetch data
         let (data,response) = try await URLSession.shared.data(from: fetchURL)
         
         //Vid 52,Paso 17, Handle response, si fue una buena respuesta
@@ -51,7 +51,7 @@ struct FetchService {
     //Repetimos los mismos pasos que arriba
     //https://breaking-bad-api-six.vercel.app/api/characters?name=Walter+White
     
-    //Vid 52, paso 19
+    //V-52, paso 19
     func fetchCharacter(_ name: String ) async throws -> Character {
         let characterURL = baseURL.appending(path: "characters")
         let fetchURL = characterURL.appending(queryItems: [URLQueryItem(name: "name", value: name)])

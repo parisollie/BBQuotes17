@@ -17,7 +17,7 @@ struct CharacterView: View {
         GeometryReader{ geo in
             //Vid 62,paso 74, ponemos el ScrollViewReader
             ScrollViewReader { proxy in
-                //Paso 51, ponemos el Zstack
+                //Paso 51 ,ponemos el Zstack
                 ZStack(alignment: .top){
                     //lo mandamos a llamar de stringExt,.removeCaseAndSpace()
                     //Paso 52 ponemos el.removeSpaces()
@@ -44,7 +44,7 @@ struct CharacterView: View {
                                 }
                             }
                         }
-                        //Paso 72,.page para multiples imagenes
+                        //Paso 72,.page para multiples imagenes,repetido
                         .tabViewStyle(.page)
                         //Paso 55
                         .frame(width: geo.size.width/1.2,height: geo.size.height/1.7)
@@ -68,7 +68,7 @@ struct CharacterView: View {
                             Divider()
                             Text("Born: \(character.birthday)")
                             Text("Ocupations:")
-                            //Vid 58,Paso 58, havemos un for each para que nos traiga las ocupaciones
+                            //Vid 58,Paso 58, hacemos un for each para que nos traiga las ocupaciones
                             ForEach(character.occupations,id: \.self){occupation in
                                 Text("•\(occupation)")
                                     .font(.subheadline)
@@ -92,9 +92,9 @@ struct CharacterView: View {
                             
                             //Vid 59, paso 62,nos mostrará una flecha ->
                             DisclosureGroup("Status (spoiler alert)"){
-                                //Paso 66,ponemos un VSTack para alinearlo
+                                //Paso 66,ponemos un VSTack para alinearlo,paso 65 no existe
                                 VStack(alignment:.leading){
-                                    //Paso 64
+                                    //Paso 64,
                                     Text(character.status)
                                         .font(.title2)
                                     //Paso 67, si el caracter esta muerto mostramos esto.
@@ -121,25 +121,25 @@ struct CharacterView: View {
                                         Text("Last words: \"\(death.lastWords)\"")
                                     }
                                 }
-                                //Paso 67
+                                //Paso 67,repetido
                                 .frame(maxWidth: .infinity,alignment: .leading)
                             }
-                            //Paso 68, con esto cambiamos el tint de azúl a negro
+                            //Paso 68, con esto cambiamos el tint de azúl a negro,repetido
                             //.tint(.primary)
                         }
-                        //Paso 57
+                        //Paso 57,repetido
                         .frame(width: geo.size.width/1.25,alignment: .leading)
                         //Vid 59,Paso 63, agregamos padding ⬆️,para que se vaya hacia arriba.
                         .padding(.bottom,50)
                         //Paso 75, ponemos el id is  a non child view por el id
                         .id(1)
                     }
-                    //Paso 59
+                    //Paso 59,repetido
                     .scrollIndicators(.hidden)
                 }
             }
         }
-        //Paso 51, add .ignoresSafeArea()
+        //Paso 51, add .ignoresSafeArea(),paso 51, repetido
         .ignoresSafeArea()
     }
 }

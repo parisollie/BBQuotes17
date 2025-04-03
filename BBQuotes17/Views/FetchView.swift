@@ -94,12 +94,12 @@ struct FetchView: View {
                     HStack{
                         //VID 71
                         Button{
-                            //Vid 57, paso 44,ponemos Task para no causar problemas con el await.
+                            //V-57, paso 44,ponemos Task para no causar problemas con el await.
                             Task{
                                 await vm.getQuoteData(for: show)
                             }
                         }label:{
-                            //Vid 56,paso 39
+                            //V-56,paso 39
                             Text("Get Random Quote")
                                 .font(.title3)
                                 .foregroundStyle(.white)
@@ -141,12 +141,12 @@ struct FetchView: View {
                 //Paso 36
                 .frame(width: geo.size.width,height: geo.size.height)
             }
-            //Paso 34, centramos la imégen del background con el geometry
+            //Paso 34, centramos la imagen del background con el geometry
             .frame(width: geo.size.width,height: geo.size.height)
         }
         //Paso 32,para que ignore el safarea
         .ignoresSafeArea()
-        //Paso 62, enseñamos el personaje con el sheet.
+        //Paso 62, enseñamos el personaje con el sheet.,repetido
         .sheet(isPresented: $showCharacterInfo){
             CharacterView(character: vm.character, show: show)
         }

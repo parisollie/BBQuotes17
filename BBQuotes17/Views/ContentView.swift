@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        //Paso 1, Vid 48, creamos el TabView
+        //Paso 1, V-48, creamos el TabView
         TabView {
             FetchView(show: Constants.bbName)
                 //Paso 3,Con este modifier aparece la línea de abajo de los tabs,para que se puedan distinguir.
@@ -23,7 +23,7 @@ struct ContentView: View {
                 .tabItem{
                     Label(Constants.bcsName, systemImage: "briefcase")
                 }
-            //Vid 71, paso 70, add el camino
+            //V-71, paso 70, add el camino
             FetchView(show: Constants.ecName)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tabItem{
