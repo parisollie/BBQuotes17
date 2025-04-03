@@ -7,14 +7,15 @@
 
 import Foundation
 
-//paso 1.8
+//V-51,Paso 1.8, creamos el FetchService
 struct FetchService {
-    //Paso 1.9, ponemos el bad response por si no recibimos una respuesta
-    //Lo cambiamos a privado
+    /*
+       Paso 1.9, ponemos el bad response por si no recibimos una respuesta
+    */
     private enum FetchError: Error {
         case badResponse
     }
-    //Paso 1.10,le ponemos (!)
+    //Paso 1.10,le ponemos (!),porque puede que la URL ya no sirva
     private let baseURL = URL(string: "https://breaking-bad-api-six.vercel.app/api")!
     
     //https://breaking-bad-api-six.vercel.app/api/quotes/random?production=Breaking+Bad
@@ -22,28 +23,24 @@ struct FetchService {
     //Paso 1.11, le ponemos el async y con throws , podemos tener error y Quote es lo que queremos.
     func fetchQuote(from show: String) async throws -> Quote {
         
-        //Paso 1.12, Build fetch url, el appending le pone el (/)por nosotros
-       
+        //Paso 1.12, el appending le pone el (/)por nosotros -> "1.-Build fetch url"
         let quoteURL = baseURL.appending(path: "quotes/random")
-        //Paso 1.13,No nos preocumos por el (+) porque la funcion de queryitems lo hace por nosotros
+        //Paso 1.13,No nos preocumos por el (+) porque la función de queryitems lo hace por nosotros
         let fetchURL = quoteURL.appending(queryItems: [URLQueryItem(name: "production", value: show)])
         
-        //Vid 51,paso 1.14 - Fetch data
+        //V-52,paso 1.14 -> "2.-Fetch data"
         let (data,response) = try await URLSession.shared.data(from: fetchURL)
         
-        //Vid 52,Paso 1.15, Handle response, si fue una buena respuesta
-        
+        //Paso 1.15, si fue una buena respuesta-> "3.-Handle response"
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             //sino fue una respuesta le mandamos un error
             throw FetchError.badResponse
         }
         
-        // paso 1.16, Decode data, decodificamos los datos
-        
+        // paso 1.16,decodificamos los datos -> "4.-Decode data"
         let quote = try JSONDecoder().decode(Quote.self, from: data)
         
-        // Return quote
-        
+        // -> "5.-Return quote"
         return quote
     }
     /*------------------------------------------------------------------------------------------------*/
@@ -51,8 +48,9 @@ struct FetchService {
     //Repetimos los mismos pasos que arriba
     //https://breaking-bad-api-six.vercel.app/api/characters?name=Walter+White
     
-    //V-52, paso 1.17
+    //V-53,paso 1.17
     func fetchCharacter(_ name: String ) async throws -> Character {
+        
         let characterURL = baseURL.appending(path: "characters")
         let fetchURL = characterURL.appending(queryItems: [URLQueryItem(name: "name", value: name)])
         

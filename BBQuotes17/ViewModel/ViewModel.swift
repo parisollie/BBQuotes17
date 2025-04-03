@@ -7,7 +7,7 @@
 
 import Foundation
 
-//V-53, paso 1.19
+//paso 1.19
 @Observable
 class ViewModel {
     enum FetchStatus{
@@ -20,9 +20,9 @@ class ViewModel {
         case failed(error: Error)
     }
     
-    //Paso 1.20,otros pueden acceder a la variable pero no cambiarla private(set)
+    //Paso 1.20,otros pueden acceder a la variable,pero no cambiarla private(set)
     private(set) var status: FetchStatus = .notStarted
-    //Inicializamos, Ya podemos usar nuestros fetcher que creamos
+    //Inicializamos, Ya podemos usar nuestros FetchService que creamos
     private let fetcher = FetchService()
     
     //fetcher.
@@ -33,9 +33,9 @@ class ViewModel {
     //Vid 65,paso 4.10,
     var episode: Episode
     
-    //Paso 1.22,corre automaticamente en nuestro ViewModel
+    //V-54,Paso 1.22,corre automaticamente en cuanto se inicialice en nuestro ViewModel
     init(){
-        //V-54,Paso 1.23
+        //Paso 1.23
         let decoder = JSONDecoder()
         //usamos esto porque al menos tenemos con 2 propiedades
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -52,7 +52,7 @@ class ViewModel {
         episode = try! decoder.decode(Episode.self, from: episodeData)
     }
     
-    //V-54, paso 2.0, es para saber las ultimas palabras cuando murio el personaje
+    //paso 2.0, es para saber las ultimas palabras cuando murio el personaje
     
     func getQuoteData(for show: String) async {
         do {
