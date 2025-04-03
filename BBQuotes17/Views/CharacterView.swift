@@ -8,32 +8,32 @@
 import SwiftUI
 
 struct CharacterView: View {
-    //Vid 58, paso 48
+    //Vid 58, paso 2.18
     let character : Character
     let show: String
     
     var body: some View {
-        //Paso 50 ,ponemos GeometryReader{ geo in
+        //Paso 2.20 ,ponemos GeometryReader{ geo in
         GeometryReader{ geo in
             //Vid 62,paso 74, ponemos el ScrollViewReader
             ScrollViewReader { proxy in
-                //Paso 51 ,ponemos el Zstack
+                //Paso 2.21 ,ponemos el Zstack
                 ZStack(alignment: .top){
                     //lo mandamos a llamar de stringExt,.removeCaseAndSpace()
-                    //Paso 52 ponemos el.removeSpaces()
+                    //Paso 2.23 ponemos el.removeSpaces()
                     //Image(show.lowercased().replacingOccurrences(of: " ", with: ""))
-                    //Paso 81, add  show.removeCaseAndSpace()
+                    //Paso 4.6, add  show.removeCaseAndSpace()
                     Image(show.removeCaseAndSpace())
                         .resizable()
                         .scaledToFit()
-                    //Paso 53, add the scrolliew
+                    //Paso 2.24, add the scrolliew
                     ScrollView{
-                        //Vid 61,Paso 71 add a Tabview
+                        //Vid 61,Paso 3.23 add a Tabview
                         TabView {
-                            //Paso 72 add el For each para obtener todas las iamgenes (las bolitas blancas)
+                            //Paso 3.24 add el For each para obtener todas las iamgenes (las bolitas blancas)
                             ForEach(character.images, id: \.self){
                                 characterImageURL in
-                                //Paso 54, ponemos el AsyncImage
+                                //Paso 2.25, ponemos el AsyncImage
                                 //Paso 73, obtenemos todas las imágenes url: characterImageURL
                                 AsyncImage(url: characterImageURL){image in
                                     image
@@ -44,16 +44,16 @@ struct CharacterView: View {
                                 }
                             }
                         }
-                        //Paso 72,.page para multiples imagenes,repetido
+                        //Paso 3.25,.page para multiples imagenes,repetido
                         .tabViewStyle(.page)
-                        //Paso 55
+                        //Paso 3.0
                         .frame(width: geo.size.width/1.2,height: geo.size.height/1.7)
                         .clipShape(.rect(cornerRadius: 25))
                         .padding(.top,60)
                         
-                        //Paso 56, add VStack
+                        //Paso 3.1, add VStack
                         VStack(alignment: .leading){
-                            //Paso 57,ponemos las caracteristicas del personaje
+                            //Paso 3.2,ponemos las caracteristicas del personaje
                             Text(character.name)
                                 .font(.largeTitle)
                             Text("Portrayed By: \(character.portrayedBy)")
@@ -68,7 +68,7 @@ struct CharacterView: View {
                             Divider()
                             Text("Born: \(character.birthday)")
                             Text("Ocupations:")
-                            //Vid 58,Paso 58, hacemos un for each para que nos traiga las ocupaciones
+                            //Vid 58,Paso 3.4, hacemos un for each para que nos traiga las ocupaciones
                             ForEach(character.occupations,id: \.self){occupation in
                                 Text("•\(occupation)")
                                     .font(.subheadline)
@@ -77,7 +77,7 @@ struct CharacterView: View {
                             Divider()
                             
                             Text("Nicknames:")
-                            //Paso 59,algunos personajes no tienen nicknames, si hay algo en la lista mayor a cero.
+                            //Paso 3.5,algunos personajes no tienen nicknames, si hay algo en la lista mayor a cero.
                             if character.aliases.count > 0 {
                                 ForEach(character.aliases,id: \.self){alias in
                                     Text("•\(alias)")
@@ -90,22 +90,22 @@ struct CharacterView: View {
                             /*---------------------------------------------*/
                             Divider()
                             
-                            //Vid 59, paso 62,nos mostrará una flecha ->
+                            //Vid 59, paso 3.9,nos mostrará una flecha ->
                             DisclosureGroup("Status (spoiler alert)"){
-                                //Paso 66,ponemos un VSTack para alinearlo,paso 65 no existe
+                                //Paso 3.16,ponemos un VSTack para alinearlo,paso 3.15 no existe
                                 VStack(alignment:.leading){
-                                    //Paso 64,
+                                    //Paso 3.14,
                                     Text(character.status)
                                         .font(.title2)
-                                    //Paso 67, si el caracter esta muerto mostramos esto.
+                                    //Paso 3.17, si el caracter esta muerto mostramos esto.
                                     if let death = character.death{
-                                        //Paso 68,mostramos la imagen del personaje
+                                        //Paso 3.19,mostramos la imagen del personaje
                                         AsyncImage(url: death.image){image in
                                             image
                                                 .resizable()
                                                 .scaledToFill()
                                                 .clipShape(.rect(cornerRadius: 15))
-                                                //Paso 76,
+                                                //Paso 4.1,
                                                 .onAppear{
                                                     withAnimation{
                                                         //1 es el id one que es el VStack
@@ -115,36 +115,36 @@ struct CharacterView: View {
                                         }placeholder: {
                                             ProgressView()
                                         }
-                                        //Paso 69
+                                        //Paso 3.21
                                         Text("How: \(death.details)")
                                             .padding(.bottom,7)
                                         Text("Last words: \"\(death.lastWords)\"")
                                     }
                                 }
-                                //Paso 67,repetido
+                                //Paso 3.18,repetido
                                 .frame(maxWidth: .infinity,alignment: .leading)
                             }
-                            //Paso 68, con esto cambiamos el tint de azúl a negro,repetido
+                            //Paso 3.20, con esto cambiamos el tint de azúl a negro,repetido
                             //.tint(.primary)
                         }
-                        //Paso 57,repetido
+                        //Paso 3.3,repetido
                         .frame(width: geo.size.width/1.25,alignment: .leading)
-                        //Vid 59,Paso 63, agregamos padding ⬆️,para que se vaya hacia arriba.
+                        //Vid 59,Paso 3.11, agregamos padding ⬆️,para que se vaya hacia arriba.
                         .padding(.bottom,50)
-                        //Paso 75, ponemos el id is  a non child view por el id
+                        //Paso 4.0, ponemos el id is  a non child view por el id
                         .id(1)
                     }
-                    //Paso 59,repetido
+                    //Paso 3.6,repetido
                     .scrollIndicators(.hidden)
                 }
             }
         }
-        //Paso 51, add .ignoresSafeArea(),paso 51, repetido
+        //Paso 2.22, add .ignoresSafeArea()
         .ignoresSafeArea()
     }
 }
 
 #Preview {
-    //Paso 49
+    //Paso 2.19
     CharacterView(character: ViewModel().character, show: Constants.bbName)
 }

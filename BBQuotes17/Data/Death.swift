@@ -7,7 +7,7 @@
 
 import Foundation
 
-//Paso 7,decodable por el JSON, deben ser iguales a las propiedades que tenemos en el archivo "sampledeath".
+//Paso 1.6,decodable por el JSON, deben ser iguales a las propiedades que tenemos en el archivo "sampledeath".
 struct Death: Decodable {
     
     let character: String

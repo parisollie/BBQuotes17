@@ -6,7 +6,7 @@
 //
 
 import Foundation
-//Vid 63,Paso 82
+//Vid 63,Paso 4.7
 enum Constants {
     //Ponemos el nombre de las constantes que usaremos en nuestro content View
     static let bbName  = "Breaking Bad"

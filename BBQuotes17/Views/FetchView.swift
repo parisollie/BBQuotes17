@@ -10,30 +10,30 @@ import SwiftUI
 struct FetchView: View {
     //Properties
     
-    //Vid 55,paso 29
+    //Vid 55,paso 2.1
     let vm = ViewModel()
     //Para saber que show veremos ,tenemos 3
     let show: String
-    //Paso 60
+    //Paso 3.7
     @State var showCharacterInfo = false
     
     var body: some View {
-        //Paso 30 usamos el GeometryReader{geo in
+        //Paso 2.2 usamos el GeometryReader{geo in
         GeometryReader{geo in
             ZStack{
-                //Paso 31,imágen,lo mandamos a llamar de "StringExt",.removeCaseAndSpace()
-                //Paso 79, add  show.removeCaseAndSpace()
+                //Paso 2.3,imágen,lo mandamos a llamar de "StringExt",.removeCaseAndSpace()
+                //Paso 4.4, add  show.removeCaseAndSpace()
                 Image(show.removeCaseAndSpace())
                     //Paso 33
                     .resizable()
                     .frame(width: geo.size.width * 2.7,height: geo.size.height * 1.2)
                 VStack{
                     //Vid 72,Ponemos otra VS,para que el botón no se mueva
-                    //Paso 46, add another VStack,para mantener los botones siempre abajo
+                    //Paso 2.16, add another VStack,para mantener los botones siempre abajo
                     VStack{
-                        //Paso 42, agregamos un spacer
+                        //Paso 2.12, agregamos un spacer
                         Spacer(minLength: 60)
-                        //Paso 45, ponemos el switch con 4 casos
+                        //Paso 2.15, ponemos el switch con 4 casos
                         switch vm.status {
                             
                         case .notStarted:
@@ -41,7 +41,7 @@ struct FetchView: View {
                         case .fetching:
                             ProgressView()
                         case .successQuote:
-                            //Paso 35
+                            //Paso 2.5
                             Text("\"\(vm.quote.quote)\"")
                                  //hacemos el texto mas pequeño con este modifer
                                 .minimumScaleFactor(0.5)
@@ -51,7 +51,7 @@ struct FetchView: View {
                                 .background(.black.opacity(0.5))
                                 .clipShape(.rect(cornerRadius: 25))
                                 .padding(.horizontal)
-                            //Paso 37, para que aparezca desde el fondo
+                            //Paso 2.7, para que aparezca desde el fondo
                             ZStack(alignment: .bottom){
                                 //Las imágenes son una colección de URL
                                 AsyncImage(url: vm.character.images[0]){image in
@@ -62,7 +62,7 @@ struct FetchView: View {
                                     //lo ponemos en lo que llega la imágen.
                                     ProgressView()
                                 }
-                                //Paso 38,para que el texto no se vaya atrás
+                                //Paso 2.8,para que el texto no se vaya atrás
                                 .frame(width: geo.size.width/1.1,height: geo.size.height/1.8)
                                 //Para el nombre del perosnaje
                                 Text(vm.quote.character)
@@ -74,7 +74,7 @@ struct FetchView: View {
                             }
                             .frame(width: geo.size.width/1.1,height: geo.size.height/1.8)
                             .clipShape(.rect(cornerRadius:50))
-                            //Vid 58,paso 61
+                            //Vid 58,paso 3.8
                             .onTapGesture {
                                 showCharacterInfo.toggle()
                             }
@@ -94,30 +94,30 @@ struct FetchView: View {
                     HStack{
                         //VID 71
                         Button{
-                            //V-57, paso 44,ponemos Task para no causar problemas con el await.
+                            //V-57, paso 2.14,ponemos Task para no causar problemas con el await.
                             Task{
                                 await vm.getQuoteData(for: show)
                             }
                         }label:{
-                            //V-56,paso 39
+                            //V-56,paso 2.9
                             Text("Get Random Quote")
                                 .font(.title3)
                                 .foregroundStyle(.white)
                                 .padding()
                                 //lo mandamos a llamar de "StringExt".removeCaseAndSpace()
-                                //color paso 40
-                                //Paso 47,ponemos el color del show,(Color("\(show.removeSpaces())Button")
-                                //Paso 80, add  show.removeCaseAndSpace()
+                                //color paso 2.10
+                                //Paso 2.17,ponemos el color del show,(Color("\(show.removeSpaces())Button")
+                                //Paso 4.5, add  show.removeCaseAndSpace()
                                 //Nuestro color se llama "BreakingBadButton"
                                 .background(Color("\(show.removeSpaces())Button"))
                                 .clipShape(.rect(cornerRadius: 7))
                                 .shadow(color:Color("\(show.replacingOccurrences(of: " ", with: ""))Button"),radius: 7)
                         }
-                        //Paso 41, ponemos el spacer
+                        //Paso 2.11, ponemos el spacer
                         Spacer()
                         
                         /*+++++++++++++++++++ SEGUNDO BOTON +++++++++++++++++++**/
-                        //VID 66,PASO 90
+                        //VID 66,PASO 4.14
                         Button{
                             Task{
                                 await vm.getEpisode(for: show)
@@ -135,18 +135,18 @@ struct FetchView: View {
                         }
                     }
                     .padding(.horizontal,30)
-                    //Paso 43, agregamos un spacer
+                    //Paso 2.13, agregamos un spacer
                     Spacer(minLength: 95)
                 }
-                //Paso 36
+                //Paso 2.6
                 .frame(width: geo.size.width,height: geo.size.height)
             }
             //Paso 34, centramos la imagen del background con el geometry
             .frame(width: geo.size.width,height: geo.size.height)
         }
-        //Paso 32,para que ignore el safarea
+        //Paso 2.4,para que ignore el safarea
         .ignoresSafeArea()
-        //Paso 62, enseñamos el personaje con el sheet.,repetido
+        //Paso 3.10, enseñamos el personaje con el sheet.,repetido
         .sheet(isPresented: $showCharacterInfo){
             CharacterView(character: vm.character, show: show)
         }

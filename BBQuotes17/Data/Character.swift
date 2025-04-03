@@ -7,18 +7,18 @@
 
 import Foundation
 
-//Paso 6,decodable por el JSON, deben ser iguales a las propiedades que tenemos en el archivo "samplecharacter".
+//Paso 1.5,decodable por el JSON, deben ser iguales a las propiedades que tenemos en el archivo "samplecharacter".
 struct Character : Decodable {
     
     let name : String
     let birthday: String
-    //Es una coleccion de strings [String].
+    //Occupations es una colección de strings [String].
     let occupations: [String]
     let images: [URL]
     let aliases : [String]
     let status: String
     let portrayedBy: String
-    //Vid 50,paso 8,Le ponemos var ,porque puede morir después ,así que es cambiable y le ponemos un opcional(?)
+    //V-50,paso 1.7,Le ponemos var ,porque puede morir después ,así que es cambiable y le ponemos un opcional(?)
     var death: Death?
     
     //Vid 89
@@ -31,7 +31,7 @@ struct Character : Decodable {
         case status
         case portrayedBy
     }
-    //V-54,Paso 26
+    //V-54,Paso 1.24
     init(from decoder: any Decoder) throws {
         //Este codigo se hace automaticamente
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -43,7 +43,7 @@ struct Character : Decodable {
         status = try container.decode(String.self, forKey: .status)
         portrayedBy = try container.decode(String.self, forKey: .portrayedBy)
         
-        //Paso 27,para death cambia ,necesitamos un JSONDecoder
+        //Paso 1.25,para death cambia ,necesitamos un JSONDecoder
         let deathDecoder = JSONDecoder()
         deathDecoder.keyDecodingStrategy = .convertFromSnakeCase
         let deathData = try! Data(contentsOf: Bundle.main.url(forResource: "sampledeath", withExtension: "json")!)
