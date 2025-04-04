@@ -7,7 +7,7 @@
 
 import Foundation
 
-//Vid 64, Paso 4.8 Episode Model
+//V-66, Paso 4.8 Episode Model
 
 struct Episode : Decodable{
     

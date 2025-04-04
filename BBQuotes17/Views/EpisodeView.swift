@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-//Vid 66,paso 4.13
+//paso 4.12
 struct EpisodeView: View {
-    //Paso 4.16,repetido,final
     let episode: Episode
     var body: some View {
         

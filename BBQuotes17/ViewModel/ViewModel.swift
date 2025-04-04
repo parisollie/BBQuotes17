@@ -14,7 +14,7 @@ class ViewModel {
         //Tendremos 4 casos
         case notStarted
         case fetching
-        //Vid 66 Paso 4.15,
+        //Paso 4.10,
         case successQuote
         case successEpisode
         case failed(error: Error)
@@ -30,7 +30,7 @@ class ViewModel {
     //Paso 1.21, accedemos a las variables del FetchService
     var quote: Quote
     var character: Character
-    //Vid 65,paso 4.10,
+    //paso 4.?
     var episode: Episode
     
     //V-54,Paso 1.22,corre automaticamente en cuanto se inicialice en nuestro ViewModel
@@ -46,14 +46,11 @@ class ViewModel {
         let characterData = try! Data(contentsOf: Bundle.main.url(forResource: "samplecharacter", withExtension: "json")!)
         character = try! decoder.decode(Character.self, from: characterData)
         
-        //V-65,paso 4.11
-        
         let episodeData = try! Data(contentsOf: Bundle.main.url(forResource: "sampleepisode", withExtension: "json")!)
         episode = try! decoder.decode(Episode.self, from: episodeData)
     }
     
-    //paso 2.0, es para saber las ultimas palabras cuando murio el personaje
-    
+    //V-56,paso 2.0, es para saber las últimas palabras cuando murio el personaje
     func getQuoteData(for show: String) async {
         do {
             quote = try await fetcher.fetchQuote(from: show)
@@ -65,7 +62,7 @@ class ViewModel {
         }
     }
     
-    //Paso 4.12
+    //Paso 4.?
     
     func getEpisode(for show: String)async{
         status = .fetching

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct FetchView: View {
-    //Properties
-    
-    //Vid 55,paso 2.1
+    //V-58,paso 2.1,ponemos el ViewModel
     let vm = ViewModel()
     //Para saber que show veremos ,tenemos 3
     let show: String
@@ -41,7 +39,8 @@ struct FetchView: View {
                         case .fetching:
                             ProgressView()
                         case .successQuote:
-                            //Paso 2.5
+                            
+                            //Paso 2.6
                             Text("\"\(vm.quote.quote)\"")
                                  //hacemos el texto mas pequeño con este modifer
                                 .minimumScaleFactor(0.5)
@@ -51,6 +50,7 @@ struct FetchView: View {
                                 .background(.black.opacity(0.5))
                                 .clipShape(.rect(cornerRadius: 25))
                                 .padding(.horizontal)
+                            
                             //Paso 2.7, para que aparezca desde el fondo
                             ZStack(alignment: .bottom){
                                 //Las imágenes son una colección de URL
@@ -74,13 +74,11 @@ struct FetchView: View {
                             }
                             .frame(width: geo.size.width/1.1,height: geo.size.height/1.8)
                             .clipShape(.rect(cornerRadius:50))
-                            //Vid 58,paso 3.8
+                            //paso 3.8
                             .onTapGesture {
                                 showCharacterInfo.toggle()
                             }
-                            
-                            //Vid 81
-                            
+                        //Paso 4.11
                         case .successEpisode:
                             EpisodeView(episode: vm.episode)
                             
@@ -90,16 +88,15 @@ struct FetchView: View {
                         
                         Spacer (minLength: 20)
                     }
-                    //Vid 81, oponemos un Hstack
+                    //Paso 4.9, oponemos un Hstack
                     HStack{
-                        //VID 71
                         Button{
-                            //V-57, paso 2.14,ponemos Task para no causar problemas con el await.
+                            //V-59 paso 2.14,ponemos Task para no causar problemas con el await.
                             Task{
                                 await vm.getQuoteData(for: show)
                             }
                         }label:{
-                            //V-56,paso 2.9
+                            //V-57,paso 2.9
                             Text("Get Random Quote")
                                 .font(.title3)
                                 .foregroundStyle(.white)
@@ -117,7 +114,7 @@ struct FetchView: View {
                         Spacer()
                         
                         /*+++++++++++++++++++ SEGUNDO BOTON +++++++++++++++++++**/
-                        //VID 66,PASO 4.14
+                        //PASO 4.?
                         Button{
                             Task{
                                 await vm.getEpisode(for: show)
@@ -128,17 +125,17 @@ struct FetchView: View {
                                 .font(.title3)
                                 .foregroundStyle(.white)
                                 .padding()
-                            //lo mandamos a llamar de string Ext,.removeCaseAndSpace()
+                                //lo mandamos a llamar de string Ext,.removeCaseAndSpace()
                                 .background(Color("\(show.removeSpaces())Button"))
                                 .clipShape(.rect(cornerRadius: 7))
                                 .shadow(color:Color("\(show.replacingOccurrences(of: " ", with: ""))Button"),radius: 7)
                         }
                     }
                     .padding(.horizontal,30)
-                    //Paso 2.13, agregamos un spacer
+                    //Paso 2.13, agregamos un spacer con cierta medida
                     Spacer(minLength: 95)
                 }
-                //Paso 2.6
+                //Paso 2.5
                 .frame(width: geo.size.width,height: geo.size.height)
             }
             //Paso 34, centramos la imagen del background con el geometry
@@ -146,7 +143,7 @@ struct FetchView: View {
         }
         //Paso 2.4,para que ignore el safarea
         .ignoresSafeArea()
-        //Paso 3.10, enseñamos el personaje con el sheet.,repetido
+        //Paso 3.11, enseñamos el personaje con el sheet.
         .sheet(isPresented: $showCharacterInfo){
             CharacterView(character: vm.character, show: show)
         }

@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         //V-48,Paso 1.0,creamos el TabView
         TabView {
+            //ponemos 4.7.1 las constante bbname
             FetchView(show: Constants.bbName)
                 //Paso 1.2,Con este modifier aparece la línea de abajo de los tabs,para que se puedan distinguir.
                 .toolbarBackground(.visible, for: .tabBar)
@@ -23,7 +24,7 @@ struct ContentView: View {
                 .tabItem{
                     Label(Constants.bcsName, systemImage: "briefcase")
                 }
-            //V-71, paso 3.22, add el camino
+            //V-71, paso 3.16, add el camino
             FetchView(show: Constants.ecName)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tabItem{

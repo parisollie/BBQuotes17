@@ -33,7 +33,7 @@ struct Character : Decodable {
     }
     //Paso 1.24
     init(from decoder: any Decoder) throws {
-        //Este codigo se hace automaticamente
+        //Este código se hace automáticamente
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         birthday = try container.decode(String.self, forKey: .birthday)

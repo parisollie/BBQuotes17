@@ -96,7 +96,7 @@ struct FetchService {
     }
     /*------------------------------------------------------------------------------------------------*/
     
-    //Vid 65,paso 4.9
+    //paso 
     //Episode? ,le pones el (?) por si no viene nada
     func fetchEpisode(from show: String ) async throws -> Episode? {
         let episodeURL = baseURL.appending(path: "episodes")

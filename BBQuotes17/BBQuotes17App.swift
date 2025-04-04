@@ -18,8 +18,7 @@ struct BBQuotes17App: App {
 
 
 /**
- Vid 61
- 
+ //V-63,paso 3.15
  Version 2 Feature List :
  
  - Add El Camino tab
